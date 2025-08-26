@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Dentist Clicker</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div id="game-container">
+        <!-- Этап 1: Выбор зуба -->
+        <div id="tooth-selection">
+            <h2>Выбери зуб для удаления</h2>
+            <div id="mouth">
+                <div class="tooth" data-tooth="1">🦷</div>
+                <div class="tooth" data-tooth="2">🦷</div>
+                <div class="tooth" data-tooth="3">🦷</div>
+                <div class="tooth" data-tooth="4">🦷</div>
+                <div class="tooth" data-tooth="5">🦷</div>
+                <div class="tooth" data-tooth="6">🦷</div>
+            </div>
+        </div>
+
+        <!-- Этап 2: Кликер -->
+        <div id="clicker-screen" style="display:none;">
+            <h2>Вырывай зуб! Кликай быстро!</h2>
+            <div id="progress-container">
+                <div id="progress-bar"></div>
+            </div>
+            <p>Клики: <span id="clicks">0</span> / 30</p>
+            <p>Осталось: <span id="timer">10</span> сек</p>
+            <button id="click-button">Клик!</button>
+        </div>
+
+        <!-- Результат -->
+        <div id="result-screen" style="display:none;">
+            <h2 id="result-message">Ты проиграл!</h2>
+            <button id="play-again">Играть снова</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
