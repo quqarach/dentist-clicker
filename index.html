@@ -1,24 +1,35 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dentist Clicker</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
     <div id="game-container">
+        <!-- Этап 0: Опрос пациента -->
+        <div id="pain-location">
+            <h2>Какой зуб болит?</h2>
+            <div id="pain-options">
+                <button class="pain-option" data-location="bottom-right">Внизу справа</button>
+                <button class="pain-option" data-location="bottom-left">Внизу слева</button>
+                <button class="pain-option" data-location="bottom-front">Внизу спереди</button>
+                <button class="pain-option" data-location="top-right">Вверху справа</button>
+                <button class="pain-option" data-location="top-left">Вверху слева</button>
+                <button class="pain-option" data-location="top-front">Вверху спереди</button>
+            </div>
+        </div>
+
         <!-- Этап 1: Выбор зуба -->
-        <div id="tooth-selection">
+        <div id="tooth-selection" style="display:none;">
             <h2>Выбери зуб для удаления</h2>
             <div id="mouth">
-                <div class="tooth" data-tooth="1">🦷</div>
-                <div class="tooth" data-tooth="2">🦷</div>
-                <div class="tooth" data-tooth="3">🦷</div>
-                <div class="tooth" data-tooth="4">🦷</div>
-                <div class="tooth" data-tooth="5">🦷</div>
-                <div class="tooth" data-tooth="6">🦷</div>
+                <div class="tooth" data-tooth="1"><img class="tooth-img" src="/img/good_tooth.png" alt="фото здорового зуба"></div>
+                <div class="tooth" data-tooth="2"><img class="tooth-img" src="/img/bad_tooth.png" alt="фото больного зуба"></div>
             </div>
         </div>
 
@@ -42,4 +53,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>

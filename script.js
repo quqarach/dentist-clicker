@@ -4,6 +4,7 @@ if (window.Telegram && Telegram.WebApp) {
 }
 
 // Элементы
+const painLocation = document.getElementById("pain-location");
 const toothSelection = document.getElementById("tooth-selection");
 const clickerScreen = document.getElementById("clicker-screen");
 const resultScreen = document.getElementById("result-screen");
@@ -19,17 +20,37 @@ let targetClicks = 30;
 let timeLeft = 10;
 let timer;
 let gameActive = false;
+let selectedLocation = "";
+let selectedTooth = "";
+
+// Выбор локации боли
+document.querySelectorAll(".pain-option").forEach(option => {
+    option.addEventListener("click", () => {
+        selectedLocation = option.dataset.location;
+        console.log("Выбрана локация боли:", selectedLocation);
+
+        painLocation.style.display = "none";
+        toothSelection.style.display = "block";
+    });
+});
 
 // Выбор зуба
 document.querySelectorAll(".tooth").forEach(tooth => {
     tooth.addEventListener("click", () => {
-        const toothId = tooth.dataset.tooth;
-        console.log("Выбран зуб:", toothId);
-        
-        toothSelection.style.display = "none";
-        clickerScreen.style.display = "block";
+        selectedTooth = tooth.dataset.tooth;
+        console.log("Выбран зуб:", selectedTooth, "в локации:", selectedLocation);
 
-        startGame();
+        // Анимация выбора
+        tooth.classList.add("selected");
+        setTimeout(() => {
+            tooth.classList.remove("selected");
+        }, 500);
+
+        setTimeout(() => {
+            toothSelection.style.display = "none";
+            clickerScreen.style.display = "block";
+            startGame();
+        }, 600);
     });
 });
 
@@ -62,6 +83,12 @@ function startGame() {
         const progress = (clicks / targetClicks) * 100;
         progressBar.style.width = progress + "%";
 
+        // Анимация кнопки
+        clickButton.style.transform = "scale(0.95)";
+        setTimeout(() => {
+            clickButton.style.transform = "scale(1)";
+        }, 100);
+
         if (clicks >= targetClicks) {
             endGame(true);
         }
@@ -88,7 +115,9 @@ function endGame(win) {
         Telegram.WebApp.sendData(JSON.stringify({
             success: win,
             clicks: clicks,
-            timeLeft: timeLeft
+            timeLeft: timeLeft,
+            painLocation: selectedLocation,
+            toothType: selectedTooth
         }));
     }
 }
@@ -96,5 +125,7 @@ function endGame(win) {
 // Кнопка "Играть снова"
 playAgainBtn.addEventListener("click", () => {
     resultScreen.style.display = "none";
-    toothSelection.style.display = "block";
+    painLocation.style.display = "block";
+    selectedLocation = "";
+    selectedTooth = "";
 });

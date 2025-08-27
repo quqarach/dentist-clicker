@@ -11,21 +11,51 @@ body {
     margin: 0 auto;
 }
 
+#pain-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.pain-option {
+    padding: 15px;
+    background-color: #4fc3f7;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s;
+}
+
+.pain-option:hover {
+    background-color: #0288d1;
+    transform: translateY(-2px);
+}
+
 #mouth {
     display: flex;
     justify-content: center;
-    gap: 10px;
-    margin: 20px 0;
-    font-size: 50px;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 30px 0;
 }
 
 .tooth {
     cursor: pointer;
-    transition: transform 0.2s;
+    transition: all 0.3s;
+    font-size: 40px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .tooth:hover {
-    transform: scale(1.2);
+    transform: scale(1.3) rotate(5deg);
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 #progress-container {
@@ -48,31 +78,59 @@ body {
 
 #click-button {
     font-size: 24px;
-    padding: 10px 20px;
+    padding: 15px 30px;
     background-color: #e53935;
     color: white;
     border: none;
     border-radius: 10px;
     cursor: pointer;
     margin-top: 20px;
+    transition: all 0.2s;
 }
 
 #click-button:hover {
     background-color: #c62828;
+    transform: scale(1.05);
+}
+
+#click-button:active {
+    transform: scale(0.95);
 }
 
 #result-message {
-    color: #e53935;
     font-size: 28px;
     margin-top: 40px;
 }
 
 #play-again {
     font-size: 18px;
-    padding: 10px 20px;
+    padding: 12px 24px;
     background-color: #1976d2;
     color: white;
     border: none;
     border-radius: 8px;
     cursor: pointer;
+    transition: all 0.3s;
+}
+
+#play-again:hover {
+    background-color: #1565c0;
+    transform: translateY(-2px);
+}
+
+/* Анимация для выбранного зуба */
+@keyframes toothPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+.tooth.selected {
+    animation: toothPulse 0.5s ease-in-out;
+}
+.tooth-img{
+    width: 150px;
+    height: 120px;
+    box-sizing: border-box;
+    box-shadow: 0 0 10px 5px #e851ae;
 }
